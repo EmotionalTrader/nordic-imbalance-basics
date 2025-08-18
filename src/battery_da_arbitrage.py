@@ -1,6 +1,5 @@
 # src/battery_da_arbitrage.py
 import argparse
-import math
 from pathlib import Path
 
 import numpy as np
@@ -109,7 +108,7 @@ def plot_pnl(df, out_png: Path, title: str):
 def write_stats_md(stats: dict, out_md: Path):
     out_md.parent.mkdir(parents=True, exist_ok=True)
     lines = [
-        f"# Battery-lite DA arbitrage — stats\n",
+        "# Battery-lite DA arbitrage — stats\n",
         f"- Hours: **{stats['hours']}**, Days: **{stats['days']}**",
         f"- Cap: **{stats['cap_mwh']} MWh**, Power: **{stats['power_mw']} MW**, Round-trip eff: **{int(stats['eta_rt']*100)}%**",
         f"- Total charge: **{stats['total_charge_mwh']:.1f} MWh**, Total discharge: **{stats['total_discharge_mwh']:.1f} MWh**",
