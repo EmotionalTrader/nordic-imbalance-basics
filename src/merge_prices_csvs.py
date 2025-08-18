@@ -1,5 +1,7 @@
 #!/usr/bin/env python
-import argparse, glob, re
+import argparse
+import glob
+import re
 from pathlib import Path
 import pandas as pd
 

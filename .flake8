@@ -1,1 +1,3 @@
-[flake8] & echo max-line-length = 120 & echo extend-ignore = E501 
+[flake8]
+max-line-length = 120
+extend-ignore = E501

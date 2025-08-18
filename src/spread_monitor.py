@@ -1,5 +1,6 @@
 # src/spread_monitor.py
-import argparse, os
+import argparse
+import os
 import pandas as pd
 
 

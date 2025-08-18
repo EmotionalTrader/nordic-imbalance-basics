@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-import argparse, os
+import argparse
+import os
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt

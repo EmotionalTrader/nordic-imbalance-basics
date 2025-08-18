@@ -57,7 +57,7 @@ def main():
         "abs_vol_p95": float(df["imbalance_volume_mwh"].abs().quantile(0.95)),
     }
     lines = ["# Quick stats", ""] + [
-        f"- **{k.replace('_',' ')}:** {v:,.2f}" for k, v in stats.items()
+        f"- **{k.replace('_', ' ')}:** {v:,.2f}" for k, v in stats.items()
     ]
     (outdir / "stats.md").write_text("\n".join(lines), encoding="utf-8")
     print(f"Saved heatmaps + stats to {outdir}")

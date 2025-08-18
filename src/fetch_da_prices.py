@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-import argparse, os
+import argparse
+import os
 from pathlib import Path
 import pandas as pd
 from entsoe import EntsoePandasClient
