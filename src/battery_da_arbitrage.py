@@ -77,12 +77,13 @@ def simulate_battery(df_prices: pd.DataFrame, cap_mwh=10.0, power_mw=5.0, eta_rt
         "total_charge_mwh": float(df["charge_mwh"].sum()),
         "total_discharge_mwh": float(df["discharge_mwh"].sum()),
         "utilisation": float((df["charge_mwh"].abs() + df["discharge_mwh"].abs()).sum())
-                        / (len(df) * power_mw),
+        / (len(df) * power_mw),
         "cycles_approx": float(df["discharge_mwh"].sum() / cap_mwh),
         "total_pnl_eur": float(df["pnl_eur"].sum()),
-        "pnl_per_day_eur": float(df["pnl_eur"].sum()) / max(1, df.index.normalize().nunique()),
+        "pnl_per_day_eur": float(df["pnl_eur"].sum())
+        / max(1, df.index.normalize().nunique()),
         "pnl_per_mwh_throughput": float(df["pnl_eur"].sum())
-                                   / max(1e-9, (df["charge_mwh"].sum() + df["discharge_mwh"].sum())),
+        / max(1e-9, (df["charge_mwh"].sum() + df["discharge_mwh"].sum())),
     }
     return df, stats
 
@@ -124,12 +125,16 @@ def write_stats_md(stats: dict, out_md: Path):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--da", required=True, help="Path to DA parquet (e.g., data/DA_SE3.parquet)")
+    ap.add_argument(
+        "--da", required=True, help="Path to DA parquet (e.g., data/DA_SE3.parquet)"
+    )
     ap.add_argument("--zone", required=True, help="SE3 / SE4 / FI")
     ap.add_argument("--out", required=True, help="output folder (e.g., reports/SE3)")
     ap.add_argument("--cap", type=float, default=10.0, help="Battery capacity MWh")
     ap.add_argument("--power", type=float, default=5.0, help="Battery power MW")
-    ap.add_argument("--rt", type=float, default=0.90, help="Round-trip efficiency (0-1)")
+    ap.add_argument(
+        "--rt", type=float, default=0.90, help="Round-trip efficiency (0-1)"
+    )
     ap.add_argument("--title", default="")
     args = ap.parse_args()
 
@@ -150,9 +155,14 @@ def main():
         # assume Europe/Brussels from the previous pipeline
         df.index = df.index.tz_localize("Europe/Brussels")
 
-    sim, stats = simulate_battery(df, cap_mwh=args.cap, power_mw=args.power, eta_rt=args.rt)
+    sim, stats = simulate_battery(
+        df, cap_mwh=args.cap, power_mw=args.power, eta_rt=args.rt
+    )
 
-    title = args.title or f"{args.zone} Battery-lite DA arbitrage ({int(args.cap)}MWh/{int(args.power)}MW, η={int(args.rt*100)}%)"
+    title = (
+        args.title
+        or f"{args.zone} Battery-lite DA arbitrage ({int(args.cap)}MWh/{int(args.power)}MW, η={int(args.rt*100)}%)"
+    )
     out_png = outdir / "battery_pnl.png"
     plot_pnl(sim, out_png, title)
 
