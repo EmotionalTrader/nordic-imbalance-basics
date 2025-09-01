@@ -1,7 +1,10 @@
 > ### ⏸️ Project paused — focusing on private futures strategy backtesting
-> As of **2025-08-26 (Europe/Stockholm)** I’ve paused active work on **nordic-imbalance-basics** to focus on
+> As of **2025-08-30 (Europe/Stockholm)** I’ve paused active work on **nordic-imbalance-basics** to focus on
 > **backtesting and analyzing my personal/private futures strategies in Python**, using a small ML toolbox here:
-> **https://github.com/EmotionalTrader/intraday-alpha-lab**  
+> **https://github.com/EmotionalTrader/intraday-alpha-lab**
+>
+> In parallel—based on user interest & requests — I’m developing buy/sell signal indicators for TradingView and NinjaTrader.
+> 
 > This repo stays public and usable; issues are welcome, but responses may be slower while I’m focused on the other project.
 
 
